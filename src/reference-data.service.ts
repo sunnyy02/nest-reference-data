@@ -4,8 +4,10 @@ import { IndustryService } from './industry.service';
 
 @Injectable()
 export class ReferenceDataService {
-    constructor(private readonly countryService: CountryService,
-        private readonly industryService: IndustryService) { }
+    constructor(
+        private readonly countryService: CountryService,
+        private readonly industryService: IndustryService
+    ) { }
 
     async getReferenceData(type: string): Promise<any[]> {
         switch (type) {

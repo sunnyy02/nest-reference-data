@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { BaseReferenceDataService } from './base-reference-data.service';
 import { CountryService } from './country.service';
 import { IndustryService } from './industry.service';
-import { ReferenceDataService } from './reference-data.factory';
+import { ReferenceDataService } from './reference-data.service';
 
 @Module({
   imports: [],

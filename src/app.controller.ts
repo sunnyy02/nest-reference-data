@@ -1,6 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
-import { ReferenceDataService } from './reference-data.factory';
+import { ReferenceDataService } from './reference-data.service';
 import { Country, Industry } from './reference-data';
 
 @Controller()
@@ -13,13 +13,8 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('country')
-  async getCountries(): Promise<Country[]> {
-    return await this.referenceDataFactory.getReferenceData('country');
-  }
-
-  @Get('industry')
-  async getIndustries(): Promise<Industry[]> {
-     return await this.referenceDataFactory.getReferenceData('industry');
+  @Get(':dataType')
+  async getReferenceData(@Param('dataType') dataType: string): Promise<Country[]> {
+    return await this.referenceDataFactory.getReferenceData(dataType);
   }
 }
