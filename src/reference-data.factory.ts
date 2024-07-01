@@ -1,20 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { CountryService } from './country.service';
 import { IndustryService } from './industry.service';
-import { ReferenceDataService } from './base-reference-data.service';
 
 @Injectable()
-export class ReferenceDataFactory {
-  constructor(private readonly countryService: CountryService, private readonly industryService: IndustryService) {}
+export class ReferenceDataService {
+    constructor(private readonly countryService: CountryService,
+        private readonly industryService: IndustryService) { }
 
-  getReferenceDataService(type: string): ReferenceDataService<any> {
-    switch (type) {
-      case 'country':
-        return this.countryService;
-      case 'industry':
-        return this.industryService;
-      default:
-        throw new Error(`Unsupported reference data type: ${type}`);
+    async getReferenceData(type: string): Promise<any[]> {
+        switch (type) {
+            case 'country':
+                return await this.countryService.getReferenceData();
+            case 'industry':
+                return await this.industryService.getReferenceData();
+            default:
+                throw new Error(`Unsupported reference data type: ${type}`);
+        }
     }
-  }
 }
