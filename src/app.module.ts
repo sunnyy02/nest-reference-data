@@ -5,6 +5,8 @@ import { ReferenceDataFactory } from './reference-data.factory';
 import { CountryService } from './country.service';
 import { IndustryService } from './industry.service';
 
+const COUNTRY_DATA_TOKEN = 'country';
+const INDUSTRY_DATA_TOKEN = 'industry';
 @Module({
   imports: [],
   controllers: [AppController],
@@ -12,11 +14,11 @@ import { IndustryService } from './industry.service';
     AppService,
     ReferenceDataFactory,
     {
-      provide: 'country',
+      provide: COUNTRY_DATA_TOKEN,
       useClass: CountryService
     },
     {
-      provide: 'industry',
+      provide: INDUSTRY_DATA_TOKEN,
       useClass: IndustryService
     }]
 })
